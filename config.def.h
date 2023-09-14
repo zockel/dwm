@@ -38,11 +38,13 @@ typedef struct {
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
 const char *spcmd3[] = {"st", "-n", "spcalc", "-g", "120x34", "-e", "bc", "-q", NULL };
+const char *spcmd4[] = {"st", "-n", "spmusic", "-g", "144x41", "-e", "ncmpcpp", "-q", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spranger",    spcmd2},
 	{"spcalc",      spcmd3},
+	{"spmusic",     spcmd4},
 };
 
 /* tagging */
@@ -59,6 +61,7 @@ static const Rule rules[] = {
 	{ NULL,	     "spterm", NULL,	       SPTAG(0),  1,          1,          1,         -1 },
 	{ NULL,	     "spfm",   NULL,	       SPTAG(1),  1,          1,          1,         -1 },
 	{ NULL,	     "spcalc", NULL,	       SPTAG(2),  1,          1,          1,         -1 },
+	{ NULL,	     "spmusic", NULL,	       SPTAG(3),  1,          1,          1,         -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,          0,         -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,          1,         -1 }, /* xev */
 };
@@ -152,6 +155,7 @@ static const Key keys[] = {
         /* { MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} }, */
 	/* scratchpads */
 	{ MODKEY,            		XK_n,      togglescratch,  {.ui = 0 } },
+	{ MODKEY|ShiftMask,         	XK_n,      togglescratch,  {.ui = 3 } },
 	{ MODKEY,            		XK_r,      togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		XK_grave,  togglescratch,  {.ui = 2 } },
 	/* vanitygaps */
