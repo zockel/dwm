@@ -71,7 +71,6 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
-	{ "[D]",      deck },
 };
 
 /* key definitions */
@@ -108,7 +107,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
 	/* { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} }, */
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -122,7 +120,7 @@ static const Key keys[] = {
         /* { MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} }, */
         /* { MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} }, */
 	{ MODKEY,            		XK_n,      togglescratch,  {.ui = 0 } },
-	{ MODKEY|ShiftMask,        	XK_r,      togglescratch,  {.ui = 1 } },
+	{ MODKEY,            		XK_r,      togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		XK_grave,  togglescratch,  {.ui = 2 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
