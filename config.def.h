@@ -76,16 +76,16 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
+	{ "H[]",      deck },
+	{ "|M|",      centeredmaster },
 	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
 	{ "HHH",      grid },
 	{ "###",      nrowgrid },
 	{ "---",      horizgrid },
 	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
@@ -109,6 +109,12 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	/* layouts */
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} }, /* tile */
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} }, /* monocle */
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} }, /* deck */
+	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[3]} }, /* centeredmaster */
+	/* default dwm actions */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -120,24 +126,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_Tab,    viewnext,       {0} },
-	{ MODKEY|ShiftMask,             XK_Tab,    viewprev,       {0} },
-/* +	{ MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} }, */
-/* +	{ MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} }, */
-	{ MODKEY,            		XK_t,      togglescratch,  {.ui = 0 } },
-	{ MODKEY,            		XK_r,      togglescratch,  {.ui = 1 } },
-	{ MODKEY,            		XK_grave,  togglescratch,  {.ui = 2 } },
+	{ MODKEY|ControlMask,           XK_h,      focusmon,       {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_l,      focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_h,      tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_l,      tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -147,11 +142,24 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* fullscreen */
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+	/* adjacent tags */
+	{ MODKEY,                       XK_Tab,    viewnext,       {0} },
+	{ MODKEY|ShiftMask,             XK_Tab,    viewprev,       {0} },
+        /* { MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} }, */
+        /* { MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} }, */
+	/* scratchpads */
+	{ MODKEY,            		XK_n,      togglescratch,  {.ui = 0 } },
+	{ MODKEY,            		XK_r,      togglescratch,  {.ui = 1 } },
+	{ MODKEY,            		XK_grave,  togglescratch,  {.ui = 2 } },
+	/* vanitygaps */
 	{ MODKEY|ShiftMask,             XK_k,      incrgaps,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_j,      incrgaps,       {.i = -1 } },
 	{ MODKEY,                       XK_g,      togglegaps,     {0} },
 	{ MODKEY|ShiftMask,             XK_g,      defaultgaps,    {0} },
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* restartsig */
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 };
 
