@@ -22,8 +22,8 @@ static const char norm_fg[]         = "#cad3f5";
 static const char norm_bg[]         = "#24273a";
 static const char norm_border[]     = "#24273a";
 static const char sel_fg[]          = "#181926";
-static const char sel_bg[]          = "#91d7e3";
-static const char sel_border[]      = "#91d7e3";
+static const char sel_bg[]          = "#c6a0f6";
+static const char sel_border[]      = "#c6a0f6";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { norm_fg, norm_bg, norm_border },
